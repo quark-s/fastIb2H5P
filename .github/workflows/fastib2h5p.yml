@@ -6,7 +6,7 @@ on:
 permissions:
   contents: write
 jobs:
-  pci:
+  h5p:
     runs-on: ubuntu-latest
     steps:
       - name: install nodejs
@@ -25,6 +25,7 @@ jobs:
       - name: run build script
         run: |
             export REPONAME="${GITHUB_REPOSITORY#*/}"
+            export NODE_OPTIONS=--openssl-legacy-provider
             mkdir ./public
             npm install -D @playwright/test
             npx playwright install --with-deps
