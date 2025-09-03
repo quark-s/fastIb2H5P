@@ -26,6 +26,7 @@ jobs:
         run: |
             export REPONAME="${GITHUB_REPOSITORY#*/}"
             export NODE_OPTIONS=--openssl-legacy-provider
+            apk add --no-cache zip
             mkdir ./public
             npm install -D @playwright/test
             npx playwright install --with-deps
@@ -41,12 +42,12 @@ jobs:
             BRANCH: gh-pages
             FOLDER: public
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      - name: release pci packages
-#        uses: ncipollo/release-action@v1
-#        with:
-#          artifacts: ${{github.workspace}}/*.tar
-#          replacesArtifacts: true
-#          removeArtifacts: true
-#          token: "${{ secrets.GITHUB_TOKEN }}"
-#          tag: "latest"
-#          allowUpdates: true
+      - name: release pci packages
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: ${{github.workspace}}/*.h5p
+          replacesArtifacts: true
+          removeArtifacts: true
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          tag: "latest"
+          allowUpdates: true
