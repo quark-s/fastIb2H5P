@@ -26,7 +26,7 @@ jobs:
         run: |
             export REPONAME="${GITHUB_REPOSITORY#*/}"
             export NODE_OPTIONS=--openssl-legacy-provider
-            apt install zip -y
+            sudo apt-get update && sudo apt-get install -y zip
             mkdir ./public
             npm install -D @playwright/test
             npx playwright install --with-deps
