@@ -21,7 +21,7 @@ jobs:
             path: 'items'
       - name: setup ee
         run: |
-            npm install --prefix ./ee/ee
+            npm install --prefix ./ee
       - name: run build script
         run: |
             export REPONAME="${GITHUB_REPOSITORY#*/}"
